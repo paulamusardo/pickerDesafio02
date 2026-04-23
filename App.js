@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  StyleSheet, 
-  Image, 
-  SafeAreaView 
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-// --- 1. COMPONENTE CABECALHO ---
+// ---  CABECALHO ---
 const Cabecalho = () => {
   return (
     <View style={styles.header}>
@@ -23,16 +15,14 @@ const Cabecalho = () => {
   );
 };
 
-// --- 2. COMPONENTE CONTEUDO ---
+// --- CONTEUDO ---
 const Conteudo = () => {
   const [nome, setNome] = useState('');
   const [linguagem, setLinguagem] = useState('Python');
   const [mensagem, setMensagem] = useState('');
   
-  // Novo estado para controlar a cor de fundo do Input
   const [corFundoInput, setCorFundoInput] = useState('#fff');
 
-  // Função que altera a cor baseada no evento de foco/desfoque
   const corDeFoco = (cor) => {
     setCorFundoInput(cor);
   };
@@ -50,12 +40,10 @@ const Conteudo = () => {
       <Text style={styles.label}>Escolha Linguagem Favorita</Text>
       
       <TextInput
-        // Unimos o estilo padrão com a cor de fundo dinâmica usando um array
         style={[styles.input, { backgroundColor: corFundoInput }]}
         placeholder="Digite seu nome"
         value={nome}
         onChangeText={(texto) => setNome(texto)}
-        // Eventos disparados ao interagir com o input:
         onFocus={() => corDeFoco('orange')}
         onBlur={() => corDeFoco('#fff')}
       />
@@ -86,11 +74,10 @@ const Conteudo = () => {
   );
 };
 
-// --- 3. COMPONENTE PRINCIPAL (APP) ---
+// --- PRINCIPAL (APP) ---
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Chamando os componentes isolados */}
       <Cabecalho />
       <Conteudo />
     </SafeAreaView>
